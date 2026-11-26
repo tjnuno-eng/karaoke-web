@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11101a">
+<title>Karaoke — A tua música. A tua voz. O teu palco.</title>
+<style>
+:root{color-scheme:dark;--bg:#0d0c14;--panel:#171522;--panel2:#201d30;--line:#302b43;--text:#f7f5ff;--muted:#aaa5bb;--accent:#a78bfa;--accent2:#7c3aed;--good:#72d6b2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 70% -10%,#292044 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
+.sidebar{position:sticky;top:0;height:100vh;padding:28px 18px;border-right:1px solid var(--line);background:#100f18d9;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:12px;padding:0 10px 32px}
+.brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#c4b5fd,#7c3aed);display:grid;place-items:center;color:#171126;font-weight:900;font-size:20px;box-shadow:0 8px 28px #7c3aed44}
+.brand-name{font-weight:800;letter-spacing:.12em;font-size:16px}
+.brand-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.nav-label{font-size:10px;letter-spacing:.16em;color:#777187;font-weight:700;padding:0 12px;margin:8px 0 10px}
+.nav{display:grid;gap:6px}
+.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:13px;transition:.18s}
+.nav button:hover{background:#ffffff0a;color:var(--text)}
+.nav button.active{background:linear-gradient(100deg,#8b5cf633,#8b5cf610);color:#d9ccff;box-shadow:inset 3px 0 var(--accent)}
+.nav .ico{width:20px;text-align:center;font-size:17px}
+.side-bottom{margin-top:auto;padding:16px 12px;color:#817b91;font-size:11px;border-top:1px solid var(--line)}
+main{min-width:0;padding:34px clamp(20px,4vw,58px) 60px;max-width:1500px;width:100%;margin:auto}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px}
+.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.12;margin:8px 0 10px;letter-spacing:-.04em}
+.subtitle{color:var(--muted);max-width:650px}
+.status{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px;white-space:nowrap}
+.status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:7px}
+.hero{position:relative;overflow:hidden;border:1px solid #6e55a044;border-radius:24px;padding:clamp(24px,4vw,42px);background:linear-gradient(115deg,#241b39 0%,#191526 55%,#171522 100%);margin-bottom:24px}
+.hero:after{content:"♫";position:absolute;right:7%;top:-35px;font-size:220px;line-height:1;color:#b49aff0c;transform:rotate(12deg);pointer-events:none}
+.hero h2{font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;margin:9px 0}
+.hero p{color:#c2bbd2;max-width:550px;margin:0 0 22px}
+.primary{border:0;border-radius:12px;padding:12px 18px;color:#170f29;font-weight:800;background:linear-gradient(100deg,#c4b5fd,#9b7bf5);box-shadow:0 8px 24px #8b5cf633}
+.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:30px 0 14px}
+.section-head h2{font-size:18px;margin:0}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{background:linear-gradient(145deg,#1b1928,#15131e);border:1px solid var(--line);border-radius:18px;padding:19px;min-width:0}
+.stat{font-size:27px;font-weight:800;letter-spacing:-.04em;margin:8px 0 1px}
+.card-label{color:var(--muted);font-size:12px}
+.card-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:#a78bfa18;color:#c4b5fd;font-size:17px}
+.empty{border:1px dashed #48415d;background:#17152288;border-radius:18px;padding:34px 20px;text-align:center}
+.empty-icon{font-size:30px;margin-bottom:8px;opacity:.9}
+.empty h3{margin:4px 0 5px;font-size:17px}
+.empty p{margin:0 auto 17px;color:var(--muted);max-width:460px;font-size:13px}
+.search{width:min(100%,360px);background:#171522;border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--text);outline:none}
+.search:focus{border-color:var(--accent)}
+.page{display:none;animation:fade .2s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.karaoke-screen{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#171522,#0c0b12);padding:30px 18px;text-align:center;min-height:310px;display:grid;align-content:center;gap:15px}
+.karaoke-screen .small{font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.lyric{font-size:clamp(21px,4vw,34px);font-weight:750;line-height:1.25;color:#fff}
+.lyric.dim{color:#706a80;font-weight:500}
+.note{font-size:12px;color:var(--muted);margin-top:16px}
+.setting-row{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--line)}
+.setting-row:last-child{border:0}
+.pill{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:11px}
+footer{color:#716b80;font-size:11px;margin-top:42px}
+.mobile-title{display:none}
+@media(max-width:850px){.app{grid-template-columns:1fr}.sidebar{display:none}main{padding:25px 20px 100px}.mobile-title{display:block;font-size:12px;letter-spacing:.15em;color:var(--accent);font-weight:800;margin-bottom:22px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topline{margin-bottom:24px}.status{display:none}}
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:9px}.card{padding:14px}.stat{font-size:23px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%}}
+.bottom-nav{display:none}
+@media(max-width:850px){.bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;z-index:5;bottom:0;left:0;right:0;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#12111bf2;border-top:1px solid var(--line);backdrop-filter:blur(16px)}.bottom-nav button{border:0;background:none;color:#918ba2;font-size:10px;display:grid;justify-items:center;gap:3px;padding:5px 0}.bottom-nav button span{font-size:18px}.bottom-nav button.active{color:#c4b5fd}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">♫</div><div><div class="brand-name">KARAOKE</div><div class="brand-sub">A tua música. A tua voz.</div></div></div>
+  <div class="nav-label">MENU PRINCIPAL</div>
+  <nav class="nav" aria-label="Menu principal">
+    <button class="active" data-page="home"><span class="ico">⌂</span>Início</button>
+    <button data-page="library"><span class="ico">♫</span>Biblioteca</button>
+    <button data-page="lists"><span class="ico">☷</span>Listas</button>
+    <button data-page="albums"><span class="ico">▤</span>Álbuns</button>
+    <button data-page="karaoke"><span class="ico">◉</span>Karaoke</button>
+    <button data-page="settings"><span class="ico">⚙</span>Definições</button>
+  </nav>
+  <div class="side-bottom">VERSÃO INICIAL<br>Preparada para evoluir contigo.</div>
+</aside>
+<main>
+  <div class="mobile-title">♫ &nbsp; KARAOKE</div>
+  <section class="page active" id="home">
+    <div class="topline"><div><div class="eyebrow">O teu espaço musical</div><h1>A tua música.<br>A tua voz.</h1><div class="subtitle">A tua coleção, as tuas letras e os teus momentos de karaoke — tudo num só lugar.</div></div><div class="status"><i></i>Estrutura inicial</div></div>
+    <div class="hero"><div class="eyebrow">Bem-vindo ao teu palco</div><h2>Está na hora de cantar.</h2><p>Vamos construir a tua biblioteca musical passo a passo. Primeiro, deixamos a aplicação preparada; depois, damos vida às músicas, letras e funcionalidades.</p><button class="primary" data-go="library">Abrir biblioteca&nbsp; →</button></div>
+    <div class="section-head"><h2>A tua coleção</h2><span class="pill">Ainda sem músicas</span></div>
+    <div class="grid">
+      <div class="card"><div class="card-icon">♫</div><div class="stat">0</div><div class="card-label">Músicas na biblioteca</div></div>
+      <div class="card"><div class="card-icon">▤</div><div class="stat">0</div><div class="card-label">Álbuns</div></div>
+      <div class="card"><div class="card-icon">☷</div><div class="stat">0</div><div class="card-label">Listas de reprodução</div></div>
+    </div>
+    <div class="section-head"><h2>Continuar a explorar</h2></div>
+    <div class="grid">
+      <div class="card"><div class="card-icon">▤</div><h3>Os teus álbuns</h3><div class="card-label">Organiza a música por álbum.</div></div>
+      <div class="card"><div class="card-icon">◉</div><h3>Modo karaoke</h3><div class="card-label">Um palco preparado para as tuas letras.</div></div>
+      <div class="card"><div class="card-icon">⚙</div><h3>As tuas definições</h3><div class="card-label">Personaliza a experiência.</div></div>
+    </div>
+    <footer>Esta versão é a estrutura visual e de navegação. Ainda não importa nem reproduz ficheiros de áudio.</footer>
+  </section>
+  <section class="page" id="library">
+    <div class="topline"><div><div class="eyebrow">A tua coleção</div><h1>Biblioteca</h1><div class="subtitle">Todas as tuas músicas num só lugar.</div></div></div>
+    <div class="section-head"><h2>As tuas músicas</h2><input class="search" type="search" placeholder="Pesquisar música ou artista" aria-label="Pesquisar música ou artista"></div>
+    <div class="empty"><div class="empty-icon">♫</div><h3>A biblioteca ainda está vazia</h3><p>Na próxima etapa vamos preparar a importação de uma música real e guardá-la no dispositivo, para poderes testar tudo com o teu próprio ficheiro.</p><span class="pill">Importação ainda não disponível</span></div>
+  </section>
+  <section class="page" id="lists">
+    <div class="eyebrow">Organiza ao teu gosto</div><h1>Listas</h1><p class="subtitle">Cria listas para organizar as músicas por ocasião, estilo ou preferência.</p>
+    <div class="empty" style="margin-top:24px"><div class="empty-icon">☷</div><h3>Ainda não tens listas</h3><p>As listas poderão reunir músicas da tua biblioteca sem duplicar os ficheiros originais.</p><span class="pill">Gestão de listas a desenvolver</span></div>
+  </section>
+  <section class="page" id="albums">
+    <div class="eyebrow">A tua discoteca</div><h1>Álbuns</h1><p class="subtitle">Os álbuns serão organizados automaticamente a partir dos dados das músicas, com possibilidade de corrigires os detalhes.</p>
+    <div class="empty" style="margin-top:24px"><div class="empty-icon">▤</div><h3>Ainda não há álbuns</h3><p>Quando adicionarmos a primeira música, começaremos também a testar a organização por álbum.</p><span class="pill">Organização a desenvolver</span></div>
+  </section>
+  <section class="page" id="karaoke">
+    <div class="eyebrow">O teu palco</div><h1>Karaoke</h1><p class="subtitle">Um ecrã pensado para acompanhar as letras com conforto, no telemóvel, tablet ou televisão.</p>
+    <div class="karaoke-screen" style="margin-top:24px"><div class="small">Pré-visualização do ecrã</div><div class="lyric dim">A tua música começa aqui</div><div class="lyric">Quando chegar a hora de cantar…</div><div class="lyric dim">…as tuas letras vão aparecer neste espaço.</div></div>
+    <div class="note">Isto é apenas uma pré-visualização. Ainda não existe reprodução de áudio nem sincronização de letras.</div>
+  </section>
+  <section class="page" id="settings">
+    <div class="eyebrow">Personaliza a experiência</div><h1>Definições</h1><p class="subtitle">Algumas opções que vamos desenvolver ao longo do projeto.</p>
+    <div class="card" style="margin-top:24px">
+      <div class="setting-row"><div><strong>Aparência</strong><div class="card-label">Tema escuro com apontamentos violeta</div></div><span class="pill">Ativo</span></div>
+      <div class="setting-row"><div><strong>Modo offline</strong><div class="card-label">Preparação para utilizar a aplicação sem internet</div></div><span class="pill">A desenvolver</span></div>
+      <div class="setting-row"><div><strong>Cópias de segurança</strong><div class="card-label">Exportar e recuperar músicas e dados</div></div><span class="pill">A desenvolver</span></div>
+      <div class="setting-row"><div><strong>Sincronização entre dispositivos</strong><div class="card-label">Acesso à coleção noutros equipamentos</div></div><span class="pill">A estudar</span></div>
+    </div>
+  </section>
+</main>
+</div>
+<nav class="bottom-nav" aria-label="Navegação móvel">
+  <button class="active" data-page="home"><span>⌂</span>Início</button>
+  <button data-page="library"><span>♫</span>Biblioteca</button>
+  <button data-page="lists"><span>☷</span>Listas</button>
+  <button data-page="albums"><span>▤</span>Álbuns</button>
+  <button data-page="karaoke"><span>◉</span>Karaoke</button>
+</nav>
+<script>
+(function(){
+ const buttons=[...document.querySelectorAll('[data-page]')];
+ function show(page){
+   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));
+   buttons.forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+   window.scrollTo({top:0,behavior:'smooth'});
+ }
+ buttons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.page)));
+ document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
+})();
+</script>
+</body>
+</html>
