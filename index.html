@@ -87,10 +87,22 @@ body.theme-white .nav button.active,body.theme-light .nav button.active{color:#2
 
 html,body{touch-action:pan-x pan-y pinch-zoom;-webkit-text-size-adjust:100%}
 .page,.panel,.sync-panel,.sync-lines{touch-action:pan-x pan-y pinch-zoom}
+
+/* Menu lateral recolhível: liberta espaço para o conteúdo e pode ser reaberto. */
+.app{grid-template-columns:245px minmax(0,1fr);transition:grid-template-columns .24s ease}
+.sidebar{min-width:0;overflow:hidden;transition:padding .24s ease,opacity .18s ease}
+.sidebar-toggle{position:fixed;z-index:30;top:116px;left:252px;width:34px;height:42px;border:1px solid var(--theme-line,var(--line));border-radius:0 10px 10px 0;background:var(--theme-button,#292139);color:var(--theme-text,#f7f5ff);font-size:25px;line-height:1;display:grid;place-items:center;box-shadow:0 3px 12px #0004;transition:left .24s ease,background .2s ease}
+.sidebar-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+body.sidebar-collapsed .app{grid-template-columns:0 minmax(0,1fr)}
+body.sidebar-collapsed .sidebar{padding-left:0;padding-right:0;border-right:0;opacity:0;pointer-events:none}
+body.sidebar-collapsed .sidebar-toggle{left:0;border-radius:0 10px 10px 0}
+body .primary{color:var(--theme-text,#f7f5ff)!important}
+@media(max-width:900px){.sidebar-toggle{display:none}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter&family=Roboto&family=Open+Sans&family=Lato&family=Montserrat&family=Poppins&family=Nunito&family=Nunito+Sans&family=Raleway&family=Oswald&family=Merriweather&family=Playfair+Display&family=Lora&family=PT+Sans&family=PT+Serif&family=Ubuntu&family=Rubik&family=Work+Sans&family=DM+Sans&family=Manrope&family=Outfit&family=Quicksand&family=Comfortaa&family=Josefin+Sans&family=Karla&family=Mulish&family=Fira+Sans&family=Source+Sans+3&family=Source+Serif+4&family=Bitter&family=Libre+Baskerville&family=Crimson+Text&family=Cormorant+Garamond&family=DM+Serif+Display&family=Bebas+Neue&family=Barlow&family=Barlow+Condensed&family=Archivo&family=Archivo+Black&family=Exo+2&family=Rajdhani&family=Titillium+Web&family=M+PLUS+Rounded+1c&family=Lexend&family=Urbanist&family=Sora&family=Space+Grotesk&family=Cabin&family=Libre+Franklin&family=Spectral&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Ocultar menu" aria-expanded="true" title="Ocultar menu">‹</button>
 <div class="app">
 <aside class="sidebar"><div class="brand"><div class="brand-mark">♫</div><div><div class="brand-name">KARAOKE</div><div class="brand-sub">A tua música. A tua voz.</div></div></div><div class="nav-label">MENU PRINCIPAL</div><nav class="nav" id="side-nav"><button class="active" data-page="home">⌂ &nbsp; Início</button><button data-page="library">♫ &nbsp; Biblioteca</button><button data-page="albums">▤ &nbsp; Álbuns</button><button data-page="playlists">☷ &nbsp; Listas</button><button data-page="karaoke">◉ &nbsp; Karaoke</button><button data-page="settings">⚙ &nbsp; Definições</button></nav><div class="side-bottom">KARAOKE<br>Biblioteca local neste dispositivo.</div></aside>
 <main><div class="mobile-title">♫ &nbsp; KARAOKE</div>
@@ -328,6 +340,15 @@ $('export-backup-side').onclick=exportBackup;
 function chooseBackup(){$('backup-file').click()}$('choose-backup-side').onclick=chooseBackup;
 $('backup-file').onchange=async e=>{const file=e.target.files[0];e.target.value='';if(!file)return;try{note($('backup-message'),'A verificar a cópia…');const data=JSON.parse(await file.text());if(data.app!=='KARAOKE'||![1,2].includes(data.formatVersion)||!Array.isArray(data.tracks))throw new Error('Ficheiro de cópia inválido ou versão não suportada');if(!confirm(`A cópia contém ${data.tracks.length} música(s). As músicas com o mesmo identificador serão substituídas. Continuar?`)){note($('backup-message'),'Restauro cancelado.');return}for(const raw of data.tracks){const t={...raw,audio:dataBlob(raw.audioData),cover:dataBlob(raw.coverData)};delete t.audioData;delete t.coverData;if(!t.audio)throw new Error('Uma música não contém áudio na cópia');await put('tracks',t)}for(const p of data.playlists||[])await put('playlists',p);for(const s of data.settings||[])await put('settings',s);await refreshAll();note($('backup-message'),`Restauro concluído: ${data.tracks.length} música(s) recuperada(s).`,'ok')}catch(err){note($('backup-message'),'Não foi possível restaurar: '+err.message,'error')}};
 if(navigator.storage?.persist)navigator.storage.persist().then(ok=>{$('storage-note').textContent=ok?'O navegador confirmou armazenamento persistente. Mantém cópias de segurança.':'O navegador não confirmou armazenamento persistente. Mantém cópias de segurança.'}).catch(()=>{});
+
+// Recolher/mostrar o menu lateral sem perder a navegação atual.
+const sidebarToggle=$('sidebar-toggle');
+function setSidebarCollapsed(collapsed){
+ document.body.classList.toggle('sidebar-collapsed',collapsed);
+ if(sidebarToggle){sidebarToggle.textContent=collapsed?'›':'‹';sidebarToggle.setAttribute('aria-expanded',String(!collapsed));sidebarToggle.setAttribute('aria-label',collapsed?'Mostrar menu':'Ocultar menu');sidebarToggle.title=collapsed?'Mostrar menu':'Ocultar menu'}
+ try{localStorage.setItem('karaoke-sidebar-collapsed',collapsed?'1':'0')}catch(e){}
+}
+if(sidebarToggle){let collapsed=false;try{collapsed=localStorage.getItem('karaoke-sidebar-collapsed')==='1'}catch(e){}setSidebarCollapsed(collapsed);sidebarToggle.addEventListener('click',()=>setSidebarCollapsed(!document.body.classList.contains('sidebar-collapsed')))}
 
 openDB().then(async()=>{await refreshAll();await loadTheme();await loadKaraokePrefs();await syncLoad()}).catch(e=>alert('Não foi possível abrir a biblioteca: '+e.message));
 })();
