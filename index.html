@@ -19,6 +19,29 @@ body.light-theme input,body.light-theme select,body.light-theme textarea,body.li
 body.light-theme .karaoke-stage{background:#e9e5ef;color:#272331;border-color:#d8d0e2}
 body.light-theme .karaoke-line{color:#777080}body.light-theme .karaoke-line.active{color:#34234d}
 body.light-theme .bottom-nav button.active,body.light-theme .nav button.active{color:var(--accent)}
+
+/* Temas dinâmicos: superfícies, texto, navegação e controlos seguem a paleta selecionada. */
+body{background-color:var(--theme-bg,#0d0c14)!important;color:var(--theme-text,#f7f5ff)}
+body .sidebar,body .bottom-nav{background:var(--theme-nav,#100f18ed);border-color:var(--theme-line,var(--line))}
+body .hero,body .panel{background:linear-gradient(125deg,var(--theme-panel-hi,#251d39),var(--theme-panel,#191725) 68%);border-color:var(--theme-line,var(--line))}
+body .card,body .track,body .album-card{background:var(--theme-panel,#191725);border-color:var(--theme-line,var(--line));color:var(--theme-text,#f7f5ff)}
+body .player{background:linear-gradient(120deg,var(--theme-panel-hi,#241b39),var(--theme-panel,#191725));border-color:var(--theme-line,var(--line))}
+body .tools input,body .tools select,body input[type=text],body input[type=search],body input[type=number],body select,body textarea,body .lyrics-preview{background:var(--theme-input,#100f18);color:var(--theme-text,#f7f5ff);border-color:var(--theme-line,var(--line))}
+body .track-actions button,body .player-controls button,body .secondary{background:var(--theme-button,#252136);color:var(--theme-text,#f7f5ff);border-color:var(--theme-line,var(--line))}
+body .eyebrow,body .card-icon{color:var(--accent)}
+body .nav button.active{background:var(--theme-active, color-mix(in srgb,var(--accent) 20%,transparent));color:var(--theme-text,#f7f5ff);box-shadow:inset 3px 0 var(--accent)}
+body .primary{background:linear-gradient(100deg,var(--accent),var(--accent2));color:var(--theme-primary-text,#171126)}
+body .karaoke-line.active,body .lyrics-preview .current{color:var(--accent);text-shadow:0 0 18px color-mix(in srgb,var(--accent) 35%,transparent)}
+body.theme-white,body.theme-light{color-scheme:light}
+body.theme-white{--theme-bg:#ffffff;--theme-panel:#ffffff;--theme-panel-hi:#f7f7f7;--theme-nav:#ffffffed;--theme-input:#ffffff;--theme-button:#f1f1f1;--theme-text:#202027;--theme-line:#d7d7dc;--theme-active:#eeeeF2;--theme-primary-text:#ffffff;background-image:none!important}
+body.theme-light{--theme-bg:#f4f1f7;--theme-panel:#ffffff;--theme-panel-hi:#f2edf8;--theme-nav:#ffffffed;--theme-input:#ffffff;--theme-button:#eee9f4;--theme-text:#272331;--theme-line:#d8d0e2;--theme-active:#eee5fa;--theme-primary-text:#ffffff;background-image:none!important}
+body.theme-white .hero p,body.theme-light .hero p{color:var(--theme-text)}
+body.theme-white .meta,body.theme-white .hint,body.theme-white .muted,body.theme-light .meta,body.theme-light .hint,body.theme-light .muted{color:#686875}
+body.theme-white .karaoke-stage,body.theme-light .karaoke-stage{background:#f1f1f4;color:#202027}
+body.theme-white .karaoke-line,body.theme-light .karaoke-line{color:#777780}
+body.theme-white .karaoke-line.active,body.theme-light .karaoke-line.active{color:var(--accent)}
+body.theme-white .cover,body.theme-light .cover,body.theme-white .player-cover,body.theme-light .player-cover{background:#e8e8ed;color:#555}
+
 @media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{display:none}main{padding:23px 17px 100px}.mobile-title{display:block;color:var(--accent);font-weight:850;margin-bottom:18px}.library-layout{grid-template-columns:1fr}.bottom-nav{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;z-index:8;bottom:0;left:0;right:0;padding:7px 4px calc(7px + env(safe-area-inset-bottom));background:#12111bf5;border-top:1px solid var(--line)}.bottom-nav button{text-align:center;font-size:10px;padding:5px 0}.bottom-nav button.active{color:#d2c2ff}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.track{grid-template-columns:46px minmax(0,1fr)}.cover{width:46px;height:46px}.track-actions{grid-column:2;justify-content:flex-start}.two-col{grid-template-columns:1fr}.hero,.panel{padding:17px}.bottom-nav button{font-size:9px}}
 </style>
@@ -27,13 +50,14 @@ body.light-theme .bottom-nav button.active,body.light-theme .nav button.active{c
 <div class="app">
 <aside class="sidebar"><div class="brand"><div class="brand-mark">♫</div><div><div class="brand-name">KARAOKE</div><div class="brand-sub">A tua música. A tua voz.</div></div></div><div class="nav-label">MENU PRINCIPAL</div><nav class="nav" id="side-nav"><button class="active" data-page="home">⌂ &nbsp; Início</button><button data-page="library">♫ &nbsp; Biblioteca</button><button data-page="albums">▤ &nbsp; Álbuns</button><button data-page="playlists">☷ &nbsp; Listas</button><button data-page="karaoke">◉ &nbsp; Karaoke</button><button data-page="settings">⚙ &nbsp; Definições</button></nav><div class="side-bottom">KARAOKE<br>Biblioteca local neste dispositivo.</div></aside>
 <main><div class="mobile-title">♫ &nbsp; KARAOKE</div>
-<section class="page active" id="home"><div class="topline"><div><div class="eyebrow">O teu espaço musical</div><h1>A tua música.<br>A tua voz.</h1><div class="subtitle">A tua coleção, as tuas letras e os teus momentos de karaoke — num só lugar.</div></div></div><div class="hero"><div class="eyebrow">Bem-vindo ao teu palco</div><h2>Está na hora de cantar.</h2><p>Organiza a tua música, prepara as letras e transforma cada canção numa sessão de karaoke.</p><button class="primary" data-go="library">Abrir biblioteca →</button></div><div class="grid"><div class="card"><div class="card-icon">♫</div><div class="stat" id="stat-tracks">0</div><div class="muted">Músicas</div></div><div class="card"><div class="card-icon">▤</div><div class="stat" id="stat-albums">0</div><div class="muted">Álbuns</div></div><div class="card"><div class="card-icon">☷</div><div class="stat" id="stat-playlists">0</div><div class="muted">Listas</div></div></div><div class="section-head"><h2>Adicionadas recentemente</h2><button class="secondary small" data-go="library">Ver biblioteca</button></div><div id="recent-list" class="track-list"></div><footer>As músicas e os dados ficam guardados localmente neste navegador. Exporta cópias de segurança regularmente.</footer></section>
+<div id="player-panel" class="player hidden"><div class="player-top"><div class="player-cover" id="player-cover">♫</div><div style="min-width:0"><div class="eyebrow">A reproduzir</div><strong id="player-title">—</strong><div class="meta" id="player-meta"></div></div></div><audio id="audio-player" preload="metadata" class="hidden"></audio><div class="time-row"><span id="elapsed">0:00</span><span id="duration">0:00</span></div><input id="seek" type="range" min="0" max="1000" value="0"><div class="player-controls"><button id="prev-track">|◀</button><button id="back-10">−10s</button><button id="play-pause">▶ Reproduzir</button><button id="forward-10">+10s</button><button id="next-track">▶|</button><label class="hint">Velocidade <select id="speed"><option value=".75">0,75×</option><option value=".9">0,9×</option><option value="1" selected>1×</option><option value="1.1">1,1×</option><option value="1.25">1,25×</option><option value="1.5">1,5×</option></select></label><label class="hint">Volume <input id="volume" type="range" min="0" max="1" step=".05" value=".85" style="width:90px;vertical-align:middle"></label><label class="hint"><input id="repeat" type="checkbox"> Repetir</label></div><div class="lyrics-preview" id="mini-lyrics">As letras sincronizadas aparecem aqui.</div></div>
+<section class="page active" id="home"><div class="topline"><div><div class="eyebrow">O teu espaço musical</div><h1>A tua música.<br>A tua voz.</h1><div class="subtitle">A tua coleção, as tuas letras e os teus momentos de karaoke — num só lugar.</div></div></div><div class="hero"><div class="eyebrow">Bem-vindo ao teu palco</div><h2>Está na hora de cantar.</h2><p>Organiza a tua música, prepara as letras e transforma cada canção numa sessão de karaoke.</p><button class="primary" data-go="library">Abrir biblioteca →</button></div><div class="grid"><div class="card"><div class="card-icon">♫</div><div class="stat" id="stat-tracks">0</div><div class="muted">Músicas</div></div><div class="card"><div class="card-icon">▤</div><div class="stat" id="stat-albums">0</div><div class="muted">Álbuns</div></div><div class="card"><div class="card-icon">☷</div><div class="stat" id="stat-playlists">0</div><div class="muted">Listas</div></div></div><footer>As músicas e os dados ficam guardados localmente neste navegador. Exporta cópias de segurança regularmente.</footer></section>
 
 <section class="page" id="library"><div class="topline"><div><div class="eyebrow">A tua coleção</div><h1>Biblioteca</h1><div class="subtitle">Importa várias músicas, organiza os detalhes e prepara as letras.</div></div></div>
 <div class="panel"><div class="tools"><button class="primary" id="choose-files">＋ Adicionar músicas</button><input id="audio-files" class="hidden" type="file" accept="audio/*,.mp3,.m4a,.wav,.flac" multiple><input id="backup-file" class="hidden" type="file" accept=".json,application/json"></div><div class="hint">Importa ficheiros de áudio suportados pelo navegador. A compatibilidade de formatos depende do iPad/dispositivo.</div><div id="library-message" class="message hidden"></div></div>
 <div class="library-layout"><div><div class="tools"><input type="search" id="search" placeholder="Pesquisar título, artista ou álbum…"><select id="filter-album"><option value="">Todos os álbuns</option></select><select id="sort"><option value="added">Mais recentes</option><option value="title">Título A–Z</option><option value="artist">Artista A–Z</option></select></div><div id="track-list" class="track-list"></div><div id="empty-library" class="empty"><div style="font-size:30px">♫</div><h3>A biblioteca ainda está vazia</h3><p>Adiciona ficheiros de áudio para começar.</p></div></div>
 <aside class="card side-panel"><h2>Cópias de segurança</h2><p class="hint">A cópia inclui músicas, capas, letras, tempos, álbuns, listas e definições. Guarda o ficheiro JSON na app Ficheiros ou no iCloud Drive.</p><div class="tools"><button class="secondary" id="export-backup-side">Exportar</button><button class="secondary" id="choose-backup-side">Restaurar</button></div><div id="backup-message" class="message hidden"></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div class="hint" id="storage-note">Biblioteca local neste navegador.</div></aside></div>
-<div id="player-panel" class="player hidden"><div class="player-top"><div class="player-cover" id="player-cover">♫</div><div style="min-width:0"><div class="eyebrow">A reproduzir</div><strong id="player-title">—</strong><div class="meta" id="player-meta"></div></div></div><audio id="audio-player" preload="metadata" class="hidden"></audio><div class="time-row"><span id="elapsed">0:00</span><span id="duration">0:00</span></div><input id="seek" type="range" min="0" max="1000" value="0"><div class="player-controls"><button id="prev-track">|◀</button><button id="back-10">−10s</button><button id="play-pause">▶ Reproduzir</button><button id="forward-10">+10s</button><button id="next-track">▶|</button><label class="hint">Velocidade <select id="speed"><option value=".75">0,75×</option><option value=".9">0,9×</option><option value="1" selected>1×</option><option value="1.1">1,1×</option><option value="1.25">1,25×</option><option value="1.5">1,5×</option></select></label><label class="hint">Volume <input id="volume" type="range" min="0" max="1" step=".05" value=".85" style="width:90px;vertical-align:middle"></label><label class="hint"><input id="repeat" type="checkbox"> Repetir</label></div><div class="lyrics-preview" id="mini-lyrics">As letras sincronizadas aparecem aqui.</div></div></section>
+</section>
 
 <section class="page" id="albums"><div class="eyebrow">A tua discoteca</div><h1>Álbuns</h1><div class="subtitle">Os álbuns são organizados automaticamente pelo campo “Álbum” das músicas.</div><div id="album-grid" class="album-grid" style="margin-top:18px"></div><div id="empty-albums" class="empty"><h3>Ainda não tens álbuns</h3><p>Edita uma música e atribui-lhe um nome de álbum.</p></div></section>
 
@@ -41,7 +65,7 @@ body.light-theme .bottom-nav button.active,body.light-theme .nav button.active{c
 
 <section class="page" id="karaoke"><div class="topline"><div><div class="eyebrow">O teu palco</div><h1>Karaoke</h1><div class="subtitle">Escolhe uma música na biblioteca e acompanha as letras em ecrã completo.</div></div><button class="secondary" id="karaoke-fullscreen">⛶ Ecrã inteiro</button></div><div class="tools"><select id="karaoke-track"><option value="">Escolher música…</option></select><button class="primary" id="karaoke-play">▶ Reproduzir</button><button class="secondary" id="karaoke-edit">Editar letras</button></div><div class="karaoke-stage" id="karaoke-stage"><div class="karaoke-line">Escolhe uma música para começar</div><div class="karaoke-line">As letras aparecerão aqui</div><div class="karaoke-line">♫</div></div><div class="tools"><button class="secondary" id="karaoke-prev">Linha anterior</button><button class="secondary" id="karaoke-next">Próxima linha / Marcar tempo</button><span class="hint" id="sync-hint">Podes marcar os tempos durante a reprodução.</span></div></section>
 
-<section class="page" id="settings"><div class="eyebrow">Personaliza a experiência</div><h1>Definições</h1><div class="panel"><div class="setting-row"><div style="flex:1"><strong>Tema</strong><div class="hint">Escolhe uma combinação de cores ou deixa a capa da música escolher os apontamentos.</div><div class="field"><label for="theme-choice">Esquema de cores</label><select id="theme-choice"><option value="violet">Violeta — escuro e elegante</option><option value="blue">Azul — moderno</option><option value="green">Verde — natural</option><option value="red">Vermelho — intenso</option><option value="mono">Monocromático — neutro</option><option value="light">Claro — tons suaves</option><option value="auto">Automático — cores da capa da música</option></select></div><div class="hint" id="theme-status">Tema violeta ativo.</div></div></div><div class="setting-row"><div><strong>Armazenamento</strong><div class="hint">IndexedDB local no navegador</div></div><span class="pill">Local</span></div><div class="setting-row"><div><strong>Cópias de segurança</strong><div class="hint">Exportação completa e recuperação</div></div><span class="pill">Disponível</span></div><div class="setting-row"><div><strong>Velocidade</strong><div class="hint">Altera a velocidade de reprodução; pode alterar também o tom.</div></div><span class="pill">Disponível</span></div><div class="setting-row"><div><strong>Alteração independente do tom</strong><div class="hint">Ainda não implementada nesta versão.</div></div><span class="pill">Por desenvolver</span></div><div class="setting-row"><div><strong>Pontuação vocal avançada</strong><div class="hint">Requer análise de áudio e calibração do microfone; não está ativa nesta versão.</div></div><span class="pill">Por desenvolver</span></div><div class="setting-row"><div><strong>Partilha e controlo em TV</strong><div class="hint">Requer serviço de ligação entre dispositivos ou soluções de transmissão.</div></div><span class="pill">Por desenvolver</span></div></div><p class="hint">A aplicação funciona no navegador. A instalação como aplicação e o funcionamento offline total dependem do suporte PWA e de uma configuração adicional do alojamento.</p></section>
+<section class="page" id="settings"><div class="eyebrow">Personaliza a experiência</div><h1>Definições</h1><div class="panel"><div class="setting-row"><div style="flex:1"><strong>Tema</strong><div class="hint">Escolhe uma paleta ou ativa o modo automático para adaptar a interface às cores da capa da música.</div><div class="field"><label for="theme-choice">Esquema de cores</label><select id="theme-choice"><option value="violet">Violeta</option><option value="blue">Azul</option><option value="green">Verde</option><option value="red">Vermelho</option><option value="pink">Cor-de-rosa</option><option value="orange">Laranja</option><option value="yellow">Amarelo</option><option value="turquoise">Turquesa</option><option value="gold">Dourado</option><option value="mono">Cinzento / monocromático</option><option value="white">Branco</option><option value="light">Claro suave</option><option value="auto">Automático — cores da capa</option></select></div><div class="hint" id="theme-status">Tema violeta ativo.</div></div></div><div class="setting-row"><div><strong>Armazenamento</strong><div class="hint">IndexedDB local no navegador</div></div><span class="pill">Local</span></div><div class="setting-row"><div><strong>Cópias de segurança</strong><div class="hint">Exportação completa e recuperação</div></div><span class="pill">Disponível</span></div><div class="setting-row"><div><strong>Velocidade</strong><div class="hint">Altera a velocidade de reprodução; pode alterar também o tom.</div></div><span class="pill">Disponível</span></div><div class="setting-row"><div><strong>Alteração independente do tom</strong><div class="hint">Ainda não implementada nesta versão.</div></div><span class="pill">Por desenvolver</span></div><div class="setting-row"><div><strong>Pontuação vocal avançada</strong><div class="hint">Requer análise de áudio e calibração do microfone; não está ativa nesta versão.</div></div><span class="pill">Por desenvolver</span></div><div class="setting-row"><div><strong>Partilha e controlo em TV</strong><div class="hint">Requer serviço de ligação entre dispositivos ou soluções de transmissão.</div></div><span class="pill">Por desenvolver</span></div></div><p class="hint">A aplicação funciona no navegador. A instalação como aplicação e o funcionamento offline total dependem do suporte PWA e de uma configuração adicional do alojamento.</p></section>
 </main></div>
 <nav class="bottom-nav" id="bottom-nav"><button class="active" data-page="home">⌂<br>Início</button><button data-page="library">♫<br>Biblioteca</button><button data-page="albums">▤<br>Álbuns</button><button data-page="playlists">☷<br>Listas</button><button data-page="karaoke">◉<br>Karaoke</button><button data-page="settings">⚙<br>Def.</button></nav>
 
@@ -63,73 +87,51 @@ const put=(name,value)=>run([name],'readwrite',s=>s[name].put(value));
 const del=(name,id)=>run([name],'readwrite',s=>s[name].delete(id));
 
 const THEME_PALETTES={
- violet:{accent:'#ad91ff',accent2:'#7c55d9',line:'#39334d',glow:'#30234d',label:'Violeta'},
- blue:{accent:'#67c7ff',accent2:'#2876bd',line:'#29445d',glow:'#142d49',label:'Azul'},
- green:{accent:'#73d69b',accent2:'#25845a',line:'#2d4c3c',glow:'#183b2a',label:'Verde'},
- red:{accent:'#ff8295',accent2:'#b83d58',line:'#56313c',glow:'#431d2a',label:'Vermelho'},
- mono:{accent:'#d1d1d8',accent2:'#777781',line:'#41414a',glow:'#292930',label:'Monocromático'},
- light:{accent:'#8058b8',accent2:'#5f3a94',line:'#d8d0e2',glow:'#e7def2',label:'Claro'}
+ violet:{accent:'#b69aff',accent2:'#8158df',line:'#493b65',bg:'#100d18',panel:'#1b1725',panelHi:'#2b203e',input:'#100d18',button:'#292139',glow:'#382454',label:'Violeta'},
+ blue:{accent:'#55c8ff',accent2:'#167bb8',line:'#254d68',bg:'#091722',panel:'#102536',panelHi:'#17364d',input:'#091722',button:'#17364d',glow:'#123d59',label:'Azul'},
+ green:{accent:'#68e09b',accent2:'#26945c',line:'#285a40',bg:'#0b1911',panel:'#14271b',panelHi:'#1b3a27',input:'#0b1911',button:'#1b3a27',glow:'#16452b',label:'Verde'},
+ red:{accent:'#ff7187',accent2:'#c52f50',line:'#65313d',bg:'#1b0b10',panel:'#2a141b',panelHi:'#421b28',input:'#1b0b10',button:'#421b28',glow:'#521d30',label:'Vermelho'},
+ pink:{accent:'#ff8fc9',accent2:'#d94b9c',line:'#693553',bg:'#1b0d18',panel:'#2b1727',panelHi:'#47213d',input:'#1b0d18',button:'#47213d',glow:'#5a2450',label:'Cor-de-rosa'},
+ orange:{accent:'#ffad65',accent2:'#d86a22',line:'#68452e',bg:'#1b120b',panel:'#2b1d13',panelHi:'#472b18',input:'#1b120b',button:'#472b18',glow:'#573016',label:'Laranja'},
+ yellow:{accent:'#ffe36b',accent2:'#c5a21c',line:'#62552a',bg:'#191609',panel:'#292410',panelHi:'#403817',input:'#191609',button:'#403817',glow:'#50420e',label:'Amarelo'},
+ turquoise:{accent:'#5ce6d4',accent2:'#1c9e9a',line:'#285b5a',bg:'#091918',panel:'#102827',panelHi:'#17403e',input:'#091918',button:'#17403e',glow:'#14504c',label:'Turquesa'},
+ gold:{accent:'#e9c36a',accent2:'#b58a2d',line:'#5e4b2c',bg:'#181309',panel:'#282012',panelHi:'#403019',input:'#181309',button:'#403019',glow:'#4d3917',label:'Dourado'},
+ mono:{accent:'#e0e0e4',accent2:'#85858d',line:'#48484f',bg:'#101013',panel:'#202024',panelHi:'#303036',input:'#101013',button:'#303036',glow:'#303036',label:'Monocromático'},
+ white:{accent:'#55555f',accent2:'#25252c',line:'#d7d7dc',bg:'#ffffff',panel:'#ffffff',panelHi:'#f7f7f7',input:'#ffffff',button:'#f1f1f1',glow:'#eeeeF2',label:'Branco',light:true},
+ light:{accent:'#8058b8',accent2:'#5f3a94',line:'#d8d0e2',bg:'#f4f1f7',panel:'#ffffff',panelHi:'#f2edf8',input:'#ffffff',button:'#eee9f4',glow:'#e7def2',label:'Claro suave',light:true}
 };
 let selectedTheme='violet';
 function applyPalette(p){
- const root=document.documentElement;
- root.style.setProperty('--accent',p.accent);
- root.style.setProperty('--accent2',p.accent2);
- root.style.setProperty('--line',p.line);
- document.querySelector('meta[name="theme-color"]')?.setAttribute('content',selectedTheme==='light'?'#f3f1f7':'#100e19');
- document.body.classList.toggle('light-theme',selectedTheme==='light');
- document.body.style.backgroundImage=`radial-gradient(ellipse at 70% -10%,${p.glow} 0,transparent 40%)`;
+ const root=document.documentElement,body=document.body;
+ root.style.setProperty('--accent',p.accent);root.style.setProperty('--accent2',p.accent2);root.style.setProperty('--line',p.line);
+ root.style.setProperty('--theme-bg',p.bg);root.style.setProperty('--theme-panel',p.panel);root.style.setProperty('--theme-panel-hi',p.panelHi);root.style.setProperty('--theme-input',p.input);root.style.setProperty('--theme-button',p.button);root.style.setProperty('--theme-line',p.line);root.style.setProperty('--theme-text',p.light?'#24232a':'#f7f5ff');root.style.setProperty('--theme-nav',p.light?'#ffffffed':p.panel);root.style.setProperty('--theme-active',p.light?'#eeeaf3':`${p.accent}2b`);root.style.setProperty('--theme-primary-text',p.light?'#ffffff':'#171126');
+ body.classList.toggle('theme-white',selectedTheme==='white');body.classList.toggle('theme-light',!!p.light&&selectedTheme!=='white');
+ body.style.backgroundColor=p.bg;body.style.backgroundImage=p.light?'none':`radial-gradient(ellipse at 70% -10%,${p.glow} 0,transparent 42%)`;
+ document.querySelector('meta[name="theme-color"]')?.setAttribute('content',p.bg);
 }
-async function saveThemeChoice(value){
- selectedTheme=value;
- await put('settings',{id:'theme',value});
- if(value==='auto'){
-   const t=currentId?await getOne('tracks',currentId):null;
-   await applyCoverTheme(t);
- }else{
-   applyPalette(THEME_PALETTES[value]||THEME_PALETTES.violet);
-   $('theme-status').textContent=`Tema ${THEME_PALETTES[value]?.label||'Violeta'} ativo.`;
- }
-}
+async function saveThemeChoice(value){selectedTheme=value;await put('settings',{id:'theme',value});if(value==='auto'){const t=currentId?await getOne('tracks',currentId):null;await applyCoverTheme(t)}else{applyPalette(THEME_PALETTES[value]||THEME_PALETTES.violet);$('theme-status').textContent=`Tema ${THEME_PALETTES[value]?.label||'Violeta'} ativo.`}}
 async function applyCoverTheme(track){
  if(selectedTheme!=='auto')return;
- if(!track?.cover){
-   applyPalette(THEME_PALETTES.violet);
-   $('theme-status').textContent='Tema automático: esta música não tem capa; a aplicação usa violeta como base.';
-   return;
- }
+ if(!track?.cover){selectedTheme='auto';applyPalette(THEME_PALETTES.violet);$('theme-status').textContent='Modo automático: esta música não tem capa. Foi usado violeta como alternativa.';return}
+ let url;
  try{
-   const url=URL.createObjectURL(track.cover),img=new Image();
-   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
-   const canvas=document.createElement('canvas');canvas.width=24;canvas.height=24;
-   const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0,24,24);
-   const data=ctx.getImageData(0,0,24,24).data;let r=0,g=0,b=0,n=0;
-   for(let i=0;i<data.length;i+=4){const a=data[i+3];if(a<150)continue;const mx=Math.max(data[i],data[i+1],data[i+2]),mn=Math.min(data[i],data[i+1],data[i+2]);if(mx<35)continue;r+=data[i];g+=data[i+1];b+=data[i+2];n++}
-   URL.revokeObjectURL(url);
-   if(!n){applyPalette(THEME_PALETTES.violet);return}
-   r=Math.round(r/n);g=Math.round(g/n);b=Math.round(b/n);
-   const accent=`rgb(${r}, ${g}, ${b})`;
-   const darker=`rgb(${Math.round(r*.62)}, ${Math.round(g*.62)}, ${Math.round(b*.62)})`;
-   const line=`rgb(${Math.round(r*.28+35)}, ${Math.round(g*.28+32)}, ${Math.round(b*.28+45)})`;
-   applyPalette({accent,accent2:darker,line,glow:`rgba(${r},${g},${b},.30)`});
-   $('theme-status').textContent='Tema automático: cores adaptadas à capa de '+track.title+'.';
- }catch(e){
-   applyPalette(THEME_PALETTES.violet);
-   $('theme-status').textContent='Não foi possível ler as cores da capa; foi mantido o tema violeta.';
- }
+  url=URL.createObjectURL(track.cover);const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
+  const canvas=document.createElement('canvas');canvas.width=48;canvas.height=48;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0,48,48);
+  const data=ctx.getImageData(0,0,48,48).data;let satTotal=0,r=0,g=0,b=0,n=0,allR=0,allG=0,allB=0,allN=0;
+  for(let i=0;i<data.length;i+=4){if(data[i+3]<150)continue;const rr=data[i],gg=data[i+1],bb=data[i+2],mx=Math.max(rr,gg,bb),mn=Math.min(rr,gg,bb),sat=mx===0?0:(mx-mn)/mx;allR+=rr;allG+=gg;allB+=bb;allN++;satTotal+=sat;if(sat>.18&&mx>45){r+=rr;g+=gg;b+=bb;n++}}
+  if(url)URL.revokeObjectURL(url);
+  // Capas essencialmente a preto e branco usam um tema neutro real, sem violeta residual.
+  if(!allN||satTotal/allN<.13||n<Math.max(8,allN*.035)){
+   const avg=Math.round((allR+allG+allB)/(3*allN));const base=avg<90?'#d8d8dc':'#bfc0c6';
+   const mono={...THEME_PALETTES.mono,accent:base,accent2:avg<90?'#85858d':'#777780',label:'Monocromático'};applyPalette(mono);$('theme-status').textContent='Modo automático: capa monocromática — interface em preto, branco e cinzentos.';return;
+  }
+  r=Math.round(r/n);g=Math.round(g/n);b=Math.round(b/n);
+  const accent=`rgb(${r},${g},${b})`,accent2=`rgb(${Math.round(r*.68)},${Math.round(g*.68)},${Math.round(b*.68)})`;
+  const p={accent,accent2,line:`rgb(${Math.round(r*.38+18)},${Math.round(g*.38+18)},${Math.round(b*.38+22)})`,bg:'#101014',panel:'#202026',panelHi:`rgb(${Math.round(r*.17+30)},${Math.round(g*.17+30)},${Math.round(b*.17+34)})`,input:'#101014',button:`rgb(${Math.round(r*.20+35)},${Math.round(g*.20+35)},${Math.round(b*.20+40)})`,glow:`rgba(${r},${g},${b},.42)`,label:'Automático'};
+  applyPalette(p);$('theme-status').textContent='Modo automático: cores predominantes adaptadas à capa de '+track.title+'.';
+ }catch(e){if(url)URL.revokeObjectURL(url);applyPalette(THEME_PALETTES.mono);$('theme-status').textContent='Não foi possível analisar a capa; foi aplicado um tema neutro.'}
 }
-async function loadTheme(){
- const saved=await getOne('settings','theme');
- selectedTheme=saved?.value||'violet';
- $('theme-choice').value=selectedTheme;
- if(selectedTheme==='auto'){
-   const t=currentId?await getOne('tracks',currentId):null;
-   await applyCoverTheme(t);
- }else{
-   applyPalette(THEME_PALETTES[selectedTheme]||THEME_PALETTES.violet);
-   $('theme-status').textContent=`Tema ${THEME_PALETTES[selectedTheme]?.label||'Violeta'} ativo.`;
- }
-}
+async function loadTheme(){const saved=await getOne('settings','theme');selectedTheme=saved?.value||'violet';$('theme-choice').value=selectedTheme;if(selectedTheme==='auto'){const t=currentId?await getOne('tracks',currentId):null;await applyCoverTheme(t)}else{applyPalette(THEME_PALETTES[selectedTheme]||THEME_PALETTES.violet);$('theme-status').textContent=`Tema ${THEME_PALETTES[selectedTheme]?.label||'Violeta'} ativo.`}}
 $('theme-choice').onchange=e=>saveThemeChoice(e.target.value);
 
 function note(el,text,type=''){el.textContent=text;el.classList.remove('hidden','error','ok');if(type)el.classList.add(type)}
@@ -146,7 +148,7 @@ $('choose-files').onclick=()=>$('audio-files').click();$('audio-files').onchange
 function trackCard(t){const row=document.createElement('div');row.className='track';const c=document.createElement('div');c.className='cover';setCover(c,t.cover);const info=document.createElement('div'),title=document.createElement('div'),meta=document.createElement('div');title.className='track-title';title.textContent=t.title;meta.className='meta';meta.textContent=[t.artist||'Artista por identificar',t.album||'Sem álbum',fmt(t.duration),bytes(t.size)].join(' · ');info.append(title,meta);const actions=document.createElement('div');actions.className='track-actions';[['▶','Reproduzir',()=>playTrack(t.id)],['✎','Editar',()=>editTrack(t.id)],['＋','Lista',()=>addToPlaylist(t.id)],['×','Eliminar',()=>removeTrack(t.id)]].forEach(([symbol,label,fn])=>{const b=document.createElement('button');b.textContent=symbol+' '+label;b.onclick=fn;actions.append(b)});row.append(c,info,actions);return row}
 async function renderTracks(){const ts=await getAll('tracks'),q=$('search').value.trim().toLowerCase(),album=$('filter-album').value,sort=$('sort').value;let filtered=ts.filter(t=>(!q||[t.title,t.artist,t.album].join(' ').toLowerCase().includes(q))&&(!album||t.album===album));filtered.sort((a,b)=>sort==='title'?a.title.localeCompare(b.title):sort==='artist'?(a.artist||'').localeCompare(b.artist||''):b.addedAt-a.addedAt);const list=$('track-list');list.innerHTML='';filtered.forEach(t=>list.append(trackCard(t)));$('empty-library').classList.toggle('hidden',filtered.length>0);const albums=[...new Set(ts.map(t=>t.album).filter(Boolean))].sort();const sel=$('filter-album'),v=sel.value;sel.innerHTML='<option value="">Todos os álbuns</option>'+albums.map(a=>`<option>${esc(a)}</option>`).join('');sel.value=albums.includes(v)?v:''}
 $('search').oninput=renderTracks;$('filter-album').onchange=renderTracks;$('sort').onchange=renderTracks;
-async function refreshAll(){const [ts,ps]=await Promise.all([getAll('tracks'),getAll('playlists')]);$('stat-tracks').textContent=ts.length;$('stat-albums').textContent=new Set(ts.map(t=>t.album).filter(Boolean)).size;$('stat-playlists').textContent=ps.length;const recent=$('recent-list');recent.innerHTML='';ts.sort((a,b)=>b.addedAt-a.addedAt).slice(0,4).forEach(t=>recent.append(trackCard(t)));await renderTracks();await renderAlbums();await renderPlaylists();renderKaraokeSelect()}
+async function refreshAll(){const [ts,ps]=await Promise.all([getAll('tracks'),getAll('playlists')]);$('stat-tracks').textContent=ts.length;$('stat-albums').textContent=new Set(ts.map(t=>t.album).filter(Boolean)).size;$('stat-playlists').textContent=ps.length;await renderTracks();await renderAlbums();await renderPlaylists();renderKaraokeSelect()}
 function updateCropPreview(){const img=$('cover-preview');if(!cropSource){img.classList.add('hidden');return}img.classList.remove('hidden');img.src=cropSource;const z=Number($('crop-zoom').value),x=Number($('crop-x').value),y=Number($('crop-y').value);img.style.transform=`scale(${z})`;img.style.objectPosition=`${x}% ${y}%`;img.style.objectFit='cover';img.style.transformOrigin=`${x}% ${y}%`}
 function setCropSource(blob){if(cropObjectUrl)URL.revokeObjectURL(cropObjectUrl);cropObjectUrl=blob?URL.createObjectURL(blob):null;cropSource=cropObjectUrl;['crop-zoom'].forEach(id=>$(id).value='1');$('crop-x').value='50';$('crop-y').value='50';updateCropPreview()}
 async function makeCroppedCover(blob){if(!blob)return null;const img=new Image(),url=URL.createObjectURL(blob);try{await new Promise((res,rej)=>{img.onload=res;img.onerror=rej;img.src=url});const z=Number($('crop-zoom').value),px=Number($('crop-x').value)/100,py=Number($('crop-y').value)/100;const side=Math.min(img.naturalWidth,img.naturalHeight)/z;const sx=(img.naturalWidth-side)*px,sy=(img.naturalHeight-side)*py;const c=document.createElement('canvas');c.width=700;c.height=700;const ctx=c.getContext('2d');ctx.drawImage(img,sx,sy,side,side,0,0,700,700);return await new Promise(resolve=>c.toBlob(resolve,'image/jpeg',.9))}finally{URL.revokeObjectURL(url)}}
@@ -158,7 +160,7 @@ async function removeTrack(id){const t=await getOne('tracks',id);if(!t||!confirm
 function updatePlayer(t){$('player-title').textContent=t.title;$('player-meta').textContent=[t.artist,t.album].filter(Boolean).join(' · ')||t.fileName;setCover($('player-cover'),t.cover);renderMiniLyrics()}
 async function playTrack(id){const t=await getOne('tracks',id);if(!t)return;const ts=await getAll('tracks');queue=ts.sort((a,b)=>a.addedAt-b.addedAt).map(x=>x.id);currentId=id;await applyCoverTheme(t);if(currentUrl)URL.revokeObjectURL(currentUrl);currentUrl=URL.createObjectURL(t.audio);audio.src=currentUrl;$('player-panel').classList.remove('hidden');updatePlayer(t);audio.play().then(()=>$('play-pause').textContent='Ⅱ Pausa').catch(()=>{$('play-pause').textContent='▶ Reproduzir'});showLyricsForTrack(t)}
 async function showLyricsForTrack(t){karaokeLines=t.lyrics||[];karaokeIndex=0;renderKaraoke()}
-$('play-pause').onclick=()=>{if(!audio.src)return;if(audio.paused)audio.play();else audio.pause()};audio.onplay=()=>$('play-pause').textContent='Ⅱ Pausa';audio.onpause=()=>$('play-pause').textContent='▶ Reproduzir';
+$('play-pause').onclick=()=>{if(!audio.src)return;if(audio.paused)audio.play().catch(()=>{});else audio.pause()};audio.onplay=()=>$('play-pause').textContent='Ⅱ Pausa';audio.onpause=()=>$('play-pause').textContent='▶ Reproduzir';
 audio.ontimeupdate=()=>{const d=audio.duration||0;$('seek').value=d?audio.currentTime/d*1000:0;$('elapsed').textContent=fmt(audio.currentTime);$('duration').textContent=fmt(d);syncLyrics()};
 $('seek').oninput=()=>{if(audio.duration)audio.currentTime=Number($('seek').value)/1000*audio.duration};$('back-10').onclick=()=>audio.currentTime=Math.max(0,audio.currentTime-10);$('forward-10').onclick=()=>audio.currentTime=Math.min(audio.duration||Infinity,audio.currentTime+10);$('volume').oninput=e=>audio.volume=Number(e.target.value);$('speed').onchange=e=>audio.playbackRate=Number(e.target.value);$('repeat').onchange=e=>audio.loop=e.target.checked;
 async function moveQueue(step){if(!queue.length)return;let i=queue.indexOf(currentId);i=(i+step+queue.length)%queue.length;playTrack(queue[i])}
