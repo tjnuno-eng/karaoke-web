@@ -98,6 +98,41 @@ body.sidebar-collapsed .sidebar{padding-left:0;padding-right:0;border-right:0;op
 body.sidebar-collapsed .sidebar-toggle{left:12px;border-radius:50%}
 .primary{color:var(--theme-primary-text,#171126)!important}
 @media(max-width:900px){.sidebar-toggle{display:none}}
+
+
+/* Layout responsivo reforçado para iPad em orientação vertical. */
+html,body{width:100%;min-width:0;max-width:100%;}
+.app{width:100%;min-width:0;}
+main{min-width:0;}
+@media (max-width:900px){
+  .app{display:block;width:100%;min-width:0;}
+  .app>main{display:block;width:100%;max-width:none;min-width:0;margin:0;padding:22px 18px calc(105px + env(safe-area-inset-bottom));}
+  .page,.page.active{display:block;width:100%;max-width:none;min-width:0;}
+  .page:not(.active){display:none;}
+  .topline{width:100%;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:18px;}
+  .topline>div{flex:1 1 100%;min-width:0;}
+  .topline h1{font-size:clamp(30px,5vw,42px);overflow-wrap:anywhere;}
+  .topline .subtitle,.subtitle{max-width:none;width:100%;} 
+  .topline>button{flex:0 0 auto;}
+  .player,.hero,.panel,.karaoke-stage,.sync-panel{width:100%;max-width:none;min-width:0;}
+  .karaoke-stage{min-height:42vh;padding:clamp(16px,3vw,25px);}
+  .karaoke-line{overflow-wrap:anywhere;}
+  .tools,.player-controls{max-width:100%;}
+  .tools>*{min-width:0;max-width:100%;}
+  .bottom-nav{width:100%;}
+}
+@media (max-width:900px) and (orientation:portrait){
+  .app>main{padding-left:16px;padding-right:16px;}
+  #karaoke .topline{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;}
+  #karaoke .topline>div{grid-column:1/-1;}
+  #karaoke .topline>button{grid-column:2;grid-row:2;justify-self:end;}
+  #karaoke .topline h1{margin-top:4px;}
+  #karaoke .karaoke-stage{min-height:38vh;}
+  #karaoke #karaoke-track{width:100%;max-width:100%;}
+  #karaoke .tools{display:flex;flex-wrap:wrap;align-items:stretch;}
+  #karaoke .tools select{flex:1 1 100%;width:100%;}
+}
+
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter&family=Roboto&family=Open+Sans&family=Lato&family=Montserrat&family=Poppins&family=Nunito&family=Nunito+Sans&family=Raleway&family=Oswald&family=Merriweather&family=Playfair+Display&family=Lora&family=PT+Sans&family=PT+Serif&family=Ubuntu&family=Rubik&family=Work+Sans&family=DM+Sans&family=Manrope&family=Outfit&family=Quicksand&family=Comfortaa&family=Josefin+Sans&family=Karla&family=Mulish&family=Fira+Sans&family=Source+Sans+3&family=Source+Serif+4&family=Bitter&family=Libre+Baskerville&family=Crimson+Text&family=Cormorant+Garamond&family=DM+Serif+Display&family=Bebas+Neue&family=Barlow&family=Barlow+Condensed&family=Archivo&family=Archivo+Black&family=Exo+2&family=Rajdhani&family=Titillium+Web&family=M+PLUS+Rounded+1c&family=Lexend&family=Urbanist&family=Sora&family=Space+Grotesk&family=Cabin&family=Libre+Franklin&family=Spectral&display=swap" rel="stylesheet">
 </head>
