@@ -6,68 +6,35 @@
 <meta name="theme-color" content="#11101a">
 <title>Karaoke — A tua música. A tua voz. O teu palco.</title>
 <style>
-:root{color-scheme:dark;--bg:#0d0c14;--panel:#171522;--panel2:#201d30;--line:#302b43;--text:#f7f5ff;--muted:#aaa5bb;--accent:#a78bfa;--accent2:#7c3aed;--good:#72d6b2}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 70% -10%,#292044 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-button,input{font:inherit}
-button{cursor:pointer}
-.app{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
+:root{color-scheme:dark;--bg:#0d0c14;--panel:#171522;--line:#302b43;--text:#f7f5ff;--muted:#aaa5bb;--accent:#a78bfa;--good:#72d6b2;--danger:#ff8b9a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -10%,#292044 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
 .sidebar{position:sticky;top:0;height:100vh;padding:28px 18px;border-right:1px solid var(--line);background:#100f18d9;display:flex;flex-direction:column}
-.brand{display:flex;align-items:center;gap:12px;padding:0 10px 32px}
-.brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#c4b5fd,#7c3aed);display:grid;place-items:center;color:#171126;font-weight:900;font-size:20px;box-shadow:0 8px 28px #7c3aed44}
-.brand-name{font-weight:800;letter-spacing:.12em;font-size:16px}
-.brand-sub{font-size:11px;color:var(--muted);margin-top:1px}
-.nav-label{font-size:10px;letter-spacing:.16em;color:#777187;font-weight:700;padding:0 12px;margin:8px 0 10px}
-.nav{display:grid;gap:6px}
-.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:13px;transition:.18s}
-.nav button:hover{background:#ffffff0a;color:var(--text)}
-.nav button.active{background:linear-gradient(100deg,#8b5cf633,#8b5cf610);color:#d9ccff;box-shadow:inset 3px 0 var(--accent)}
-.nav .ico{width:20px;text-align:center;font-size:17px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 10px 32px}.brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#c4b5fd,#7c3aed);display:grid;place-items:center;color:#171126;font-weight:900;font-size:20px;box-shadow:0 8px 28px #7c3aed44}
+.brand-name{font-weight:800;letter-spacing:.12em;font-size:16px}.brand-sub{font-size:11px;color:var(--muted);margin-top:1px}.nav-label{font-size:10px;letter-spacing:.16em;color:#777187;font-weight:700;padding:0 12px;margin:8px 0 10px}
+.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:13px;transition:.18s}.nav button:hover{background:#ffffff0a;color:var(--text)}.nav button.active{background:linear-gradient(100deg,#8b5cf633,#8b5cf610);color:#d9ccff;box-shadow:inset 3px 0 var(--accent)}.nav .ico{width:20px;text-align:center;font-size:17px}
 .side-bottom{margin-top:auto;padding:16px 12px;color:#817b91;font-size:11px;border-top:1px solid var(--line)}
-main{min-width:0;padding:34px clamp(20px,4vw,58px) 60px;max-width:1500px;width:100%;margin:auto}
-.topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px}
-.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
-h1{font-size:clamp(28px,4vw,42px);line-height:1.12;margin:8px 0 10px;letter-spacing:-.04em}
-.subtitle{color:var(--muted);max-width:650px}
-.status{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px;white-space:nowrap}
-.status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:7px}
-.hero{position:relative;overflow:hidden;border:1px solid #6e55a044;border-radius:24px;padding:clamp(24px,4vw,42px);background:linear-gradient(115deg,#241b39 0%,#191526 55%,#171522 100%);margin-bottom:24px}
-.hero:after{content:"♫";position:absolute;right:7%;top:-35px;font-size:220px;line-height:1;color:#b49aff0c;transform:rotate(12deg);pointer-events:none}
-.hero h2{font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;margin:9px 0}
-.hero p{color:#c2bbd2;max-width:550px;margin:0 0 22px}
-.primary{border:0;border-radius:12px;padding:12px 18px;color:#170f29;font-weight:800;background:linear-gradient(100deg,#c4b5fd,#9b7bf5);box-shadow:0 8px 24px #8b5cf633}
-.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:30px 0 14px}
-.section-head h2{font-size:18px;margin:0}
-.muted{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.card{background:linear-gradient(145deg,#1b1928,#15131e);border:1px solid var(--line);border-radius:18px;padding:19px;min-width:0}
-.stat{font-size:27px;font-weight:800;letter-spacing:-.04em;margin:8px 0 1px}
-.card-label{color:var(--muted);font-size:12px}
-.card-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:#a78bfa18;color:#c4b5fd;font-size:17px}
-.empty{border:1px dashed #48415d;background:#17152288;border-radius:18px;padding:34px 20px;text-align:center}
-.empty-icon{font-size:30px;margin-bottom:8px;opacity:.9}
-.empty h3{margin:4px 0 5px;font-size:17px}
-.empty p{margin:0 auto 17px;color:var(--muted);max-width:460px;font-size:13px}
-.search{width:min(100%,360px);background:#171522;border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--text);outline:none}
-.search:focus{border-color:var(--accent)}
-.page{display:none;animation:fade .2s ease}
-.page.active{display:block}
-@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
-.karaoke-screen{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#171522,#0c0b12);padding:30px 18px;text-align:center;min-height:310px;display:grid;align-content:center;gap:15px}
-.karaoke-screen .small{font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
-.lyric{font-size:clamp(21px,4vw,34px);font-weight:750;line-height:1.25;color:#fff}
-.lyric.dim{color:#706a80;font-weight:500}
-.note{font-size:12px;color:var(--muted);margin-top:16px}
-.setting-row{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--line)}
-.setting-row:last-child{border:0}
-.pill{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:11px}
-footer{color:#716b80;font-size:11px;margin-top:42px}
-.mobile-title{display:none}
-@media(max-width:850px){.app{grid-template-columns:1fr}.sidebar{display:none}main{padding:25px 20px 100px}.mobile-title{display:block;font-size:12px;letter-spacing:.15em;color:var(--accent);font-weight:800;margin-bottom:22px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topline{margin-bottom:24px}.status{display:none}}
-@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:9px}.card{padding:14px}.stat{font-size:23px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%}}
+main{min-width:0;padding:34px clamp(20px,4vw,58px) 60px;max-width:1500px;width:100%;margin:auto}.topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px}
+.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}h1{font-size:clamp(28px,4vw,42px);line-height:1.12;margin:8px 0 10px;letter-spacing:-.04em}.subtitle{color:var(--muted);max-width:650px}
+.status{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px;white-space:nowrap}.status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:7px}
+.hero{position:relative;overflow:hidden;border:1px solid #6e55a044;border-radius:24px;padding:clamp(24px,4vw,42px);background:linear-gradient(115deg,#241b39 0%,#191526 55%,#171522 100%);margin-bottom:24px}.hero:after{content:"♫";position:absolute;right:7%;top:-35px;font-size:220px;line-height:1;color:#b49aff0c;transform:rotate(12deg);pointer-events:none}
+.hero h2{font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;margin:9px 0}.hero p{color:#c2bbd2;max-width:550px;margin:0 0 22px}
+.primary{border:0;border-radius:12px;padding:12px 18px;color:#170f29;font-weight:800;background:linear-gradient(100deg,#c4b5fd,#9b7bf5);box-shadow:0 8px 24px #8b5cf633}.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.secondary{border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:var(--text);background:#211e2e}.secondary:hover{border-color:var(--accent)}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:30px 0 14px}.section-head h2{font-size:18px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:linear-gradient(145deg,#1b1928,#15131e);border:1px solid var(--line);border-radius:18px;padding:19px;min-width:0}
+.stat{font-size:27px;font-weight:800;letter-spacing:-.04em;margin:8px 0 1px}.card-label{color:var(--muted);font-size:12px}.card-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:#a78bfa18;color:#c4b5fd;font-size:17px}
+.empty{border:1px dashed #48415d;background:#17152288;border-radius:18px;padding:34px 20px;text-align:center}.empty-icon{font-size:30px;margin-bottom:8px;opacity:.9}.empty h3{margin:4px 0 5px;font-size:17px}.empty p{margin:0 auto 17px;color:var(--muted);max-width:460px;font-size:13px}
+.search{width:min(100%,360px);background:#171522;border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--text);outline:none}.search:focus{border-color:var(--accent)}
+.page{display:none;animation:fade .2s ease}.page.active{display:block}@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.karaoke-screen{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#171522,#0c0b12);padding:30px 18px;text-align:center;min-height:310px;display:grid;align-content:center;gap:15px}.karaoke-screen .small{font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}.lyric{font-size:clamp(21px,4vw,34px);font-weight:750;line-height:1.25;color:#fff}.lyric.dim{color:#706a80;font-weight:500}
+.note{font-size:12px;color:var(--muted);margin-top:16px}.setting-row{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--line)}.setting-row:last-child{border:0}.pill{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:11px}
+footer{color:#716b80;font-size:11px;margin-top:42px}.mobile-title{display:none}
+.library-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:20px 0}.track-list{display:grid;gap:10px}.track{display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:13px;padding:13px;background:#191725;border:1px solid var(--line);border-radius:15px}.track-art{width:48px;height:48px;border-radius:12px;background:linear-gradient(145deg,#a78bfa55,#7c3aed22);display:grid;place-items:center;font-size:22px;color:#d8c9ff}.track-title{font-weight:700;overflow-wrap:anywhere}.track-meta{font-size:12px;color:var(--muted)}.track-actions{display:flex;gap:7px;align-items:center}.track-actions button{border:1px solid var(--line);background:#242033;color:var(--text);border-radius:10px;padding:8px 11px}.track-actions .delete{color:var(--danger)}
+.player{margin-top:20px;padding:18px;border:1px solid #7c3aed55;border-radius:18px;background:linear-gradient(120deg,#241b39,#171522)}.player h3{margin:0 0 3px}.player audio{width:100%;margin-top:12px}.message{margin:12px 0;padding:12px 14px;border-radius:12px;background:#1c1930;color:#cfc5e9;font-size:13px}.message.error{background:#351c27;color:#ffc0c8}.hidden{display:none!important}
 .bottom-nav{display:none}
-@media(max-width:850px){.bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;z-index:5;bottom:0;left:0;right:0;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#12111bf2;border-top:1px solid var(--line);backdrop-filter:blur(16px)}.bottom-nav button{border:0;background:none;color:#918ba2;font-size:10px;display:grid;justify-items:center;gap:3px;padding:5px 0}.bottom-nav button span{font-size:18px}.bottom-nav button.active{color:#c4b5fd}}
+@media(max-width:850px){.app{grid-template-columns:1fr}.sidebar{display:none}main{padding:25px 20px 100px}.mobile-title{display:block;font-size:12px;letter-spacing:.15em;color:var(--accent);font-weight:800;margin-bottom:22px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topline{margin-bottom:24px}.status{display:none}.bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;z-index:5;bottom:0;left:0;right:0;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#12111bf2;border-top:1px solid var(--line);backdrop-filter:blur(16px)}.bottom-nav button{border:0;background:none;color:#918ba2;font-size:10px;display:grid;justify-items:center;gap:3px;padding:5px 0}.bottom-nav button span{font-size:18px}.bottom-nav button.active{color:#c4b5fd}}
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:9px}.card{padding:14px}.stat{font-size:23px}.hero{border-radius:18px}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%}.track{grid-template-columns:42px minmax(0,1fr)}.track-art{width:42px;height:42px}.track-actions{grid-column:2;justify-content:flex-start}.library-tools>*{width:100%}}
 </style>
 </head>
 <body>
@@ -83,73 +50,92 @@ footer{color:#716b80;font-size:11px;margin-top:42px}
     <button data-page="karaoke"><span class="ico">◉</span>Karaoke</button>
     <button data-page="settings"><span class="ico">⚙</span>Definições</button>
   </nav>
-  <div class="side-bottom">VERSÃO INICIAL<br>Preparada para evoluir contigo.</div>
+  <div class="side-bottom">VERSÃO INICIAL<br>Biblioteca local em teste.</div>
 </aside>
 <main>
   <div class="mobile-title">♫ &nbsp; KARAOKE</div>
   <section class="page active" id="home">
-    <div class="topline"><div><div class="eyebrow">O teu espaço musical</div><h1>A tua música.<br>A tua voz.</h1><div class="subtitle">A tua coleção, as tuas letras e os teus momentos de karaoke — tudo num só lugar.</div></div><div class="status"><i></i>Estrutura inicial</div></div>
-    <div class="hero"><div class="eyebrow">Bem-vindo ao teu palco</div><h2>Está na hora de cantar.</h2><p>Vamos construir a tua biblioteca musical passo a passo. Primeiro, deixamos a aplicação preparada; depois, damos vida às músicas, letras e funcionalidades.</p><button class="primary" data-go="library">Abrir biblioteca&nbsp; →</button></div>
-    <div class="section-head"><h2>A tua coleção</h2><span class="pill">Ainda sem músicas</span></div>
+    <div class="topline"><div><div class="eyebrow">O teu espaço musical</div><h1>A tua música.<br>A tua voz.</h1><div class="subtitle">A tua coleção, as tuas letras e os teus momentos de karaoke — tudo num só lugar.</div></div><div class="status"><i></i>Biblioteca em teste</div></div>
+    <div class="hero"><div class="eyebrow">Bem-vindo ao teu palco</div><h2>Está na hora de cantar.</h2><p>A tua biblioteca começa aqui. Adiciona uma música MP3 e testa a importação, o armazenamento e a reprodução no iPad.</p><button class="primary" data-go="library">Adicionar a primeira música&nbsp; →</button></div>
+    <div class="section-head"><h2>A tua coleção</h2><span class="pill" id="home-count">A carregar…</span></div>
     <div class="grid">
-      <div class="card"><div class="card-icon">♫</div><div class="stat">0</div><div class="card-label">Músicas na biblioteca</div></div>
-      <div class="card"><div class="card-icon">▤</div><div class="stat">0</div><div class="card-label">Álbuns</div></div>
-      <div class="card"><div class="card-icon">☷</div><div class="stat">0</div><div class="card-label">Listas de reprodução</div></div>
+      <div class="card"><div class="card-icon">♫</div><div class="stat" id="stat-tracks">—</div><div class="card-label">Músicas na biblioteca</div></div>
+      <div class="card"><div class="card-icon">▤</div><div class="stat">0</div><div class="card-label">Álbuns (próxima etapa)</div></div>
+      <div class="card"><div class="card-icon">☷</div><div class="stat">0</div><div class="card-label">Listas (próxima etapa)</div></div>
     </div>
     <div class="section-head"><h2>Continuar a explorar</h2></div>
     <div class="grid">
-      <div class="card"><div class="card-icon">▤</div><h3>Os teus álbuns</h3><div class="card-label">Organiza a música por álbum.</div></div>
-      <div class="card"><div class="card-icon">◉</div><h3>Modo karaoke</h3><div class="card-label">Um palco preparado para as tuas letras.</div></div>
-      <div class="card"><div class="card-icon">⚙</div><h3>As tuas definições</h3><div class="card-label">Personaliza a experiência.</div></div>
+      <div class="card"><div class="card-icon">▤</div><h3>Os teus álbuns</h3><div class="card-label">Organização por álbum será desenvolvida a seguir.</div></div>
+      <div class="card"><div class="card-icon">◉</div><h3>Modo karaoke</h3><div class="card-label">O ecrã de letras será ligado à música mais à frente.</div></div>
+      <div class="card"><div class="card-icon">⚙</div><h3>As tuas definições</h3><div class="card-label">As cópias de segurança serão preparadas numa etapa própria.</div></div>
     </div>
-    <footer>Esta versão é a estrutura visual e de navegação. Ainda não importa nem reproduz ficheiros de áudio.</footer>
+    <footer>As músicas importadas ficam guardadas no armazenamento deste navegador. Não são enviadas para o GitHub.</footer>
   </section>
   <section class="page" id="library">
-    <div class="topline"><div><div class="eyebrow">A tua coleção</div><h1>Biblioteca</h1><div class="subtitle">Todas as tuas músicas num só lugar.</div></div></div>
-    <div class="section-head"><h2>As tuas músicas</h2><input class="search" type="search" placeholder="Pesquisar música ou artista" aria-label="Pesquisar música ou artista"></div>
-    <div class="empty"><div class="empty-icon">♫</div><h3>A biblioteca ainda está vazia</h3><p>Na próxima etapa vamos preparar a importação de uma música real e guardá-la no dispositivo, para poderes testar tudo com o teu próprio ficheiro.</p><span class="pill">Importação ainda não disponível</span></div>
-  </section>
-  <section class="page" id="lists">
-    <div class="eyebrow">Organiza ao teu gosto</div><h1>Listas</h1><p class="subtitle">Cria listas para organizar as músicas por ocasião, estilo ou preferência.</p>
-    <div class="empty" style="margin-top:24px"><div class="empty-icon">☷</div><h3>Ainda não tens listas</h3><p>As listas poderão reunir músicas da tua biblioteca sem duplicar os ficheiros originais.</p><span class="pill">Gestão de listas a desenvolver</span></div>
-  </section>
-  <section class="page" id="albums">
-    <div class="eyebrow">A tua discoteca</div><h1>Álbuns</h1><p class="subtitle">Os álbuns serão organizados automaticamente a partir dos dados das músicas, com possibilidade de corrigires os detalhes.</p>
-    <div class="empty" style="margin-top:24px"><div class="empty-icon">▤</div><h3>Ainda não há álbuns</h3><p>Quando adicionarmos a primeira música, começaremos também a testar a organização por álbum.</p><span class="pill">Organização a desenvolver</span></div>
-  </section>
-  <section class="page" id="karaoke">
-    <div class="eyebrow">O teu palco</div><h1>Karaoke</h1><p class="subtitle">Um ecrã pensado para acompanhar as letras com conforto, no telemóvel, tablet ou televisão.</p>
-    <div class="karaoke-screen" style="margin-top:24px"><div class="small">Pré-visualização do ecrã</div><div class="lyric dim">A tua música começa aqui</div><div class="lyric">Quando chegar a hora de cantar…</div><div class="lyric dim">…as tuas letras vão aparecer neste espaço.</div></div>
-    <div class="note">Isto é apenas uma pré-visualização. Ainda não existe reprodução de áudio nem sincronização de letras.</div>
-  </section>
-  <section class="page" id="settings">
-    <div class="eyebrow">Personaliza a experiência</div><h1>Definições</h1><p class="subtitle">Algumas opções que vamos desenvolver ao longo do projeto.</p>
-    <div class="card" style="margin-top:24px">
-      <div class="setting-row"><div><strong>Aparência</strong><div class="card-label">Tema escuro com apontamentos violeta</div></div><span class="pill">Ativo</span></div>
-      <div class="setting-row"><div><strong>Modo offline</strong><div class="card-label">Preparação para utilizar a aplicação sem internet</div></div><span class="pill">A desenvolver</span></div>
-      <div class="setting-row"><div><strong>Cópias de segurança</strong><div class="card-label">Exportar e recuperar músicas e dados</div></div><span class="pill">A desenvolver</span></div>
-      <div class="setting-row"><div><strong>Sincronização entre dispositivos</strong><div class="card-label">Acesso à coleção noutros equipamentos</div></div><span class="pill">A estudar</span></div>
+    <div class="topline"><div><div class="eyebrow">A tua coleção</div><h1>Biblioteca</h1><div class="subtitle">Importa um MP3, guarda-o neste iPad e reproduz a música diretamente na aplicação.</div></div></div>
+    <div class="card">
+      <h2 style="margin:0 0 6px;font-size:18px">Adicionar música</h2>
+      <p class="card-label" style="margin:0 0 14px">Nesta primeira experiência aceitamos ficheiros MP3. O ficheiro fica no armazenamento local deste navegador.</p>
+      <div class="library-tools">
+        <button class="primary" id="choose-file">＋ Escolher ficheiro MP3</button>
+        <input id="audio-file" class="hidden" type="file" accept=".mp3,audio/mpeg">
+      </div>
+      <div id="import-message" class="message hidden" role="status"></div>
+      <div class="card-label">Nota: não carregues a tua música para o repositório GitHub. Usa apenas o botão acima, dentro da aplicação.</div>
     </div>
+    <div class="section-head"><h2>As tuas músicas</h2><span class="pill" id="library-count">0 músicas</span></div>
+    <div id="track-list" class="track-list"></div>
+    <div id="empty-library" class="empty"><div class="empty-icon">♫</div><h3>A biblioteca ainda está vazia</h3><p>Escolhe um ficheiro MP3 acima. Depois vamos confirmar que fica guardado mesmo quando fechas e reabres a aplicação.</p></div>
+    <div id="player-panel" class="player hidden"><div class="eyebrow">A reproduzir</div><h3 id="player-title">—</h3><div class="card-label" id="player-meta"></div><audio id="audio-player" controls preload="metadata"></audio></div>
+    <div class="note" id="storage-note">A aplicação tentará pedir ao navegador armazenamento persistente, quando essa possibilidade estiver disponível. Mesmo assim, deves manter cópias dos teus ficheiros originais.</div>
   </section>
+  <section class="page" id="lists"><div class="eyebrow">Organiza ao teu gosto</div><h1>Listas</h1><p class="subtitle">As listas de reprodução serão construídas depois de validarmos a biblioteca e o leitor.</p><div class="empty" style="margin-top:24px"><div class="empty-icon">☷</div><h3>Gestão de listas a desenvolver</h3><p>Primeiro vamos garantir que as músicas são importadas e guardadas corretamente.</p></div></section>
+  <section class="page" id="albums"><div class="eyebrow">A tua discoteca</div><h1>Álbuns</h1><p class="subtitle">A organização por álbum será ligada aos dados das músicas numa próxima etapa.</p><div class="empty" style="margin-top:24px"><div class="empty-icon">▤</div><h3>Organização de álbuns a desenvolver</h3><p>Os dados dos álbuns serão editáveis para corrigires informação quando necessário.</p></div></section>
+  <section class="page" id="karaoke"><div class="eyebrow">O teu palco</div><h1>Karaoke</h1><p class="subtitle">O ecrã de letras será ligado ao leitor depois de validarmos a importação e reprodução de áudio.</p><div class="karaoke-screen" style="margin-top:24px"><div class="small">Pré-visualização do ecrã</div><div class="lyric dim">A tua música começa aqui</div><div class="lyric">As letras sincronizadas vão aparecer neste espaço.</div><div class="lyric dim">Primeiro, vamos testar o leitor.</div></div><div class="note">Ainda não existe sincronização de letras nem pontuação vocal.</div></section>
+  <section class="page" id="settings"><div class="eyebrow">Personaliza a experiência</div><h1>Definições</h1><p class="subtitle">Estado das funcionalidades.</p><div class="card" style="margin-top:24px"><div class="setting-row"><div><strong>Aparência</strong><div class="card-label">Tema escuro com apontamentos violeta</div></div><span class="pill">Ativo</span></div><div class="setting-row"><div><strong>Biblioteca local</strong><div class="card-label">IndexedDB no navegador</div></div><span class="pill">Em teste</span></div><div class="setting-row"><div><strong>Cópias de segurança</strong><div class="card-label">Exportação e recuperação</div></div><span class="pill">A desenvolver</span></div><div class="setting-row"><div><strong>Sincronização entre dispositivos</strong><div class="card-label">Serviço online</div></div><span class="pill">A estudar</span></div></div></section>
 </main>
 </div>
-<nav class="bottom-nav" aria-label="Navegação móvel">
-  <button class="active" data-page="home"><span>⌂</span>Início</button>
-  <button data-page="library"><span>♫</span>Biblioteca</button>
-  <button data-page="lists"><span>☷</span>Listas</button>
-  <button data-page="albums"><span>▤</span>Álbuns</button>
-  <button data-page="karaoke"><span>◉</span>Karaoke</button>
-</nav>
+<nav class="bottom-nav" aria-label="Navegação móvel"><button class="active" data-page="home"><span>⌂</span>Início</button><button data-page="library"><span>♫</span>Biblioteca</button><button data-page="lists"><span>☷</span>Listas</button><button data-page="albums"><span>▤</span>Álbuns</button><button data-page="karaoke"><span>◉</span>Karaoke</button></nav>
 <script>
 (function(){
- const buttons=[...document.querySelectorAll('[data-page]')];
- function show(page){
-   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));
-   buttons.forEach(b=>b.classList.toggle('active',b.dataset.page===page));
-   window.scrollTo({top:0,behavior:'smooth'});
- }
- buttons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.page)));
+ const navButtons=[...document.querySelectorAll('[data-page]')];
+ function show(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});if(page==='library')loadTracks();}
+ navButtons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.page)));
  document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
+
+ const DB_NAME='karaoke-local-library';const DB_VERSION=1;const STORE='tracks';
+ const choose=document.getElementById('choose-file'),fileInput=document.getElementById('audio-file'),message=document.getElementById('import-message');
+ const list=document.getElementById('track-list'),empty=document.getElementById('empty-library'),count=document.getElementById('library-count');
+ const playerPanel=document.getElementById('player-panel'),audio=document.getElementById('audio-player');
+ let currentUrl=null;
+ function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE))db.createObjectStore(STORE,{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
+ async function withStore(mode,action){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,mode);const store=tx.objectStore(STORE);let result;try{result=action(store);}catch(e){reject(e);db.close();return;}tx.oncomplete=()=>{db.close();resolve(result&&result.result!==undefined?result.result:result);};tx.onerror=()=>{db.close();reject(tx.error||new Error('Erro ao aceder à biblioteca.'));};tx.onabort=()=>{db.close();reject(tx.error||new Error('Operação interrompida.'));};});}
+ function fmtTime(s){if(!Number.isFinite(s))return 'Duração desconhecida';const m=Math.floor(s/60),sec=Math.floor(s%60);return `${m}:${String(sec).padStart(2,'0')}`;}
+ function fmtSize(n){return n<1048576?`${(n/1024).toFixed(0)} KB`:`${(n/1048576).toFixed(1)} MB`;}
+ function showMessage(text,isError=false){message.textContent=text;message.classList.remove('hidden','error');if(isError)message.classList.add('error');}
+ function hideMessage(){message.classList.add('hidden');}
+ function getDuration(file){return new Promise(resolve=>{const url=URL.createObjectURL(file);const a=new Audio();a.preload='metadata';a.onloadedmetadata=()=>{const d=a.duration;URL.revokeObjectURL(url);resolve(Number.isFinite(d)?d:null);};a.onerror=()=>{URL.revokeObjectURL(url);resolve(null);};a.src=url;});}
+ async function importFile(file){
+   if(!file)return;if(!file.name.toLowerCase().endsWith('.mp3')&&file.type!=='audio/mpeg'){showMessage('Este primeiro teste aceita ficheiros MP3. Escolhe um ficheiro com extensão .mp3.',true);return;}
+   if(file.size===0){showMessage('O ficheiro está vazio. Escolhe outro MP3.',true);return;}
+   showMessage('A preparar e guardar a música no iPad…');
+   try{
+     const duration=await getDuration(file);const id=(crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Math.random().toString(16).slice(2)}`);
+     const track={id,title:file.name.replace(/\.mp3$/i,''),artist:'Artista por identificar',album:'',fileName:file.name,mimeType:file.type||'audio/mpeg',size:file.size,duration,addedAt:Date.now(),audio:file};
+     await withStore('readwrite',store=>store.add(track));
+     showMessage('Música guardada na biblioteca deste navegador. Vamos confirmar a reprodução.');await loadTracks();await playTrack(id);
+   }catch(e){console.error(e);showMessage('Não foi possível guardar esta música. O armazenamento do navegador pode estar limitado ou indisponível. Erro: '+(e.message||'desconhecido'),true);}
+ }
+ async function loadTracks(){
+   try{const tracks=await withStore('readonly',store=>store.getAll());tracks.sort((a,b)=>b.addedAt-a.addedAt);list.innerHTML='';count.textContent=`${tracks.length} ${tracks.length===1?'música':'músicas'}`;document.getElementById('stat-tracks').textContent=tracks.length;document.getElementById('home-count').textContent=tracks.length?`${tracks.length} na biblioteca`:'Ainda sem músicas';empty.classList.toggle('hidden',tracks.length>0);
+     tracks.forEach(t=>{const row=document.createElement('div');row.className='track';const art=document.createElement('div');art.className='track-art';art.textContent='♫';const info=document.createElement('div');const title=document.createElement('div');title.className='track-title';title.textContent=t.title;const meta=document.createElement('div');meta.className='track-meta';meta.textContent=`${fmtTime(t.duration)} · ${fmtSize(t.size)} · ${t.fileName}`;info.append(title,meta);const actions=document.createElement('div');actions.className='track-actions';const play=document.createElement('button');play.textContent='▶ Reproduzir';play.addEventListener('click',()=>playTrack(t.id));const del=document.createElement('button');del.className='delete';del.textContent='Eliminar';del.addEventListener('click',()=>deleteTrack(t.id,t.title));actions.append(play,del);row.append(art,info,actions);list.append(row);});
+   }catch(e){showMessage('Não foi possível abrir a biblioteca local: '+(e.message||'erro desconhecido'),true);}
+ }
+ async function playTrack(id){try{const t=await withStore('readonly',store=>store.get(id));if(!t){showMessage('Não encontrei esta música na biblioteca.',true);return;}if(currentUrl)URL.revokeObjectURL(currentUrl);currentUrl=URL.createObjectURL(t.audio);audio.src=currentUrl;document.getElementById('player-title').textContent=t.title;document.getElementById('player-meta').textContent=`${fmtTime(t.duration)} · ${t.fileName}`;playerPanel.classList.remove('hidden');try{await audio.play();}catch(e){showMessage('A música está carregada. Toca no botão Play do leitor para iniciar a reprodução.',false);}}catch(e){showMessage('Não foi possível abrir esta música: '+(e.message||'erro desconhecido'),true);}}
+ async function deleteTrack(id,title){if(!confirm(`Queres eliminar "${title}" da biblioteca deste iPad? Esta ação não pode ser desfeita nesta versão.`))return;try{await withStore('readwrite',store=>store.delete(id));if(document.getElementById('player-title').textContent===title){audio.pause();audio.removeAttribute('src');playerPanel.classList.add('hidden');if(currentUrl){URL.revokeObjectURL(currentUrl);currentUrl=null;}}showMessage('Música eliminada da biblioteca local.');await loadTracks();}catch(e){showMessage('Não foi possível eliminar a música.',true);}}
+ choose.addEventListener('click',()=>fileInput.click());fileInput.addEventListener('change',()=>{const f=fileInput.files&&fileInput.files[0];importFile(f);fileInput.value='';});
+ if(navigator.storage&&navigator.storage.persist){navigator.storage.persist().then(granted=>{document.getElementById('storage-note').textContent=granted?'O navegador confirmou armazenamento persistente para esta aplicação. Mantém também cópias dos ficheiros originais.':'O navegador não confirmou armazenamento persistente. Os dados podem ser removidos pelo sistema ou se limpares os dados do Safari. Mantém cópias dos ficheiros originais.';}).catch(()=>{});}
+ loadTracks();
 })();
 </script>
 </body>
